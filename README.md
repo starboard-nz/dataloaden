@@ -1,4 +1,4 @@
-### The DATALOADer gENerator [![CircleCI](https://circleci.com/gh/Vektah/dataloaden.svg?style=svg)](https://circleci.com/gh/vektah/dataloaden) [![Go Report Card](https://goreportcard.com/badge/github.com/vektah/dataloaden)](https://goreportcard.com/report/github.com/vektah/dataloaden) [![codecov](https://codecov.io/gh/vektah/dataloaden/branch/master/graph/badge.svg)](https://codecov.io/gh/vektah/dataloaden)
+### The DATALOADer gENerator [![CircleCI](https://circleci.com/gh/starboard-nz/dataloaden.svg?style=svg)](https://circleci.com/gh/starboard-nz/dataloaden) [![Go Report Card](https://goreportcard.com/badge/github.com/starboard-nz/dataloaden)](https://goreportcard.com/report/github.com/starboard-nz/dataloaden) [![codecov](https://codecov.io/gh/starboard-nz/dataloaden/branch/master/graph/badge.svg)](https://codecov.io/gh/starboard-nz/dataloaden)
 
 Requires golang 1.11+ for modules support.
 
@@ -12,11 +12,11 @@ get used.
 
 From inside the package you want to have the dataloader in:
 ```bash
-go run github.com/vektah/dataloaden UserLoader string *github.com/dataloaden/example.User
+go run github.com/starboard-nz/dataloaden UserLoader string *github.com/dataloaden/example.User
 ```
 
-This will generate a dataloader called `UserLoader` that looks up `*github.com/dataloaden/example.User`'s objects 
-based on a `string` key. 
+This will generate a dataloader called `UserLoader` that looks up `*github.com/dataloaden/example.User`'s objects
+based on a `string` key.
 
 In another file in the same package, create the constructor method:
 ```go
@@ -49,11 +49,11 @@ function once. It also caches values and wont request duplicates in a batch.
 
 #### Returning Slices
 
-You may want to generate a dataloader that returns slices instead of single values. Both key and value types can be a 
-simple go type expression: 
+You may want to generate a dataloader that returns slices instead of single values. Both key and value types can be a
+simple go type expression:
 
 ```bash
-go run github.com/vektah/dataloaden UserSliceLoader string []*github.com/dataloaden/example.User
+go run github.com/starboard-nz/dataloaden UserSliceLoader string []*github.com/dataloaden/example.User
 ```
 
 Now each key is expected to return a slice of values and the `fetch` function has the return type `[][]*User`.
@@ -66,12 +66,12 @@ Create a tools.go that looks like this:
 
 package main
 
-import _ "github.com/vektah/dataloaden"
+import _ "github.com/starboard-nz/dataloaden"
 ```
 
 This will allow go modules to see the dependency.
 
-You can invoke it from anywhere within your module now using `go run github.com/vektah/dataloaden` and 
+You can invoke it from anywhere within your module now using `go run github.com/starboard-nz/dataloaden` and
 always get the pinned version.
 
 #### Wait, how do I use context with this?
