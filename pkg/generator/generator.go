@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"text/template"
 	"unicode"
 
 	"github.com/pkg/errors"
@@ -86,7 +87,7 @@ func Generate(name string, keyType string, valueType string, wd string) error {
 
 	filename := strings.ToLower(data.Name) + "_gen.go"
 
-	if err := writeTemplate(filepath.Join(wd, filename), data); err != nil {
+	if err := writeTemplate(tplNoCache, filepath.Join(wd, filename), data); err != nil {
 		return err
 	}
 
@@ -138,9 +139,9 @@ func getPackage(dir string) *packages.Package {
 	return p[0]
 }
 
-func writeTemplate(filepath string, data templateData) error {
+func writeTemplate(t *template.Template, filepath string, data templateData) error {
 	var buf bytes.Buffer
-	if err := tpl.Execute(&buf, data); err != nil {
+	if err := t.Execute(&buf, data); err != nil {
 		return errors.Wrap(err, "generating code")
 	}
 
